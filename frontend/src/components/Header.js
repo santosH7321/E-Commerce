@@ -2,15 +2,18 @@ import logo from "../assest/logoBlack.png";
 import { GrSearch } from "react-icons/gr";
 import { FaRegCircleUser } from "react-icons/fa6";
 import { FaShoppingCart } from "react-icons/fa";
+import { Link } from "react-router-dom";
 const Header = () => {
   return (
-    <header className="h-16 shadow-md">
+    <header className="h-16 shadow-md bg-white">
       <div
         className="h-full container mx-auto flex 
             items-center px-4 justify-between"
       >
         <div className="h-[50px] w-[50px] ">
-          <img src={logo} alt="logo" />
+            <Link to={"/"}>
+                <img src={logo} alt="logo" />
+            </Link>
         </div>
 
         {/* Serarch */}
@@ -44,9 +47,9 @@ const Header = () => {
 
           {/* Login button */}
           <div>
-            <button className="p-3 py-1 rounded-full text-white font-semibold bg-red-600 hover:bg-red-700">
+            <Link to={"/login"} className="p-3 py-1 rounded-full text-white font-semibold bg-red-600 hover:bg-red-700">
                 Login
-            </button>
+            </Link>
           </div>
         </div>
       </div>
