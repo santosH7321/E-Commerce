@@ -6,7 +6,7 @@ function App() {
   return (
    <>
     <Header />
-    <main>
+    <main className="min-h-[cal(100vh-120px)]">
          <Outlet />
     </main>
     <Footer />
