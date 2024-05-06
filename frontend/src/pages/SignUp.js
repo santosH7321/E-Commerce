@@ -2,6 +2,7 @@ import { useState } from "react";
 import loginIcon from "../assest/signin.gif";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import imageTobase64 from "../helpers/imageTobase64";
 
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -25,11 +26,17 @@ const SignUp = () => {
     });
   };
 
-  
-const handleUploadPic = (e) => {
-    const file = e.target.files[0]
-    console.log("file", file)
-}
+  const handleUploadPic = async (e) => {
+    const file = e.target.files[0];
+    const imagePic = await imageTobase64(file);
+
+    setData((preve) => {
+      return{
+        ...preve,
+        profilePic: imagePic,
+      }
+    })
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -40,22 +47,21 @@ const handleUploadPic = (e) => {
         <div className="bg-white p-5 w-full max-w-sm mx-auto">
           <div className="w-20 h-20 mx-auto relative overflow-hidden rounded-full">
             <div>
-              <img src={loginIcon} alt="login Icon" />
+              <img src={data.profilePic || loginIcon} alt="login Icon" />
             </div>
             {/* Upload photo */}
             <form>
-                <label>
-                    <div className="text-xs bg-opacity-80  bg-slate-200 text-center pb-4 pt-2 cursor-pointer absolute bottom-0 w-full ">
-                    Upload Photo
-                    </div>
+              <label>
+                <div className="text-xs bg-opacity-80  bg-slate-200 text-center pb-4 pt-2 cursor-pointer absolute bottom-0 w-full ">
+                  Upload Photo
+                </div>
 
-                    <input 
-                    type="file" 
-                    className="hidden"
-                    onChange={handleUploadPic}
-                    />
-                </label>
-               
+                <input
+                  type="file"
+                  className="hidden"
+                  onChange={handleUploadPic}
+                />
+              </label>
             </form>
           </div>
 
@@ -71,6 +77,7 @@ const handleUploadPic = (e) => {
                   value={data.name}
                   onChange={handleOnChange}
                   className="w-full h-full outline-none bg-transparent"
+                  required
                 />
               </div>
             </div>
@@ -84,6 +91,7 @@ const handleUploadPic = (e) => {
                   value={data.email}
                   onChange={handleOnChange}
                   className="w-full h-full outline-none bg-transparent"
+                  required
                 />
               </div>
             </div>
@@ -98,6 +106,7 @@ const handleUploadPic = (e) => {
                   name="password"
                   onChange={handleOnChange}
                   className="w-full h-full outline-none bg-transparent"
+                  required
                 />
 
                 <div
@@ -120,6 +129,7 @@ const handleUploadPic = (e) => {
                   name="confirmPassword"
                   onChange={handleOnChange}
                   className="w-full h-full outline-none bg-transparent"
+                  required
                 />
 
                 <div

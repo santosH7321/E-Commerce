@@ -46,7 +46,9 @@ const Login = () => {
                                  name='email'
                                  value={data.email}
                                  onChange={handleOnChange}
-                                 className='w-full h-full outline-none bg-transparent' />
+                                 className='w-full h-full outline-none bg-transparent'
+                                 required
+                                 />
                             </div>
                         </div>
 
@@ -59,7 +61,9 @@ const Login = () => {
                                 value={data.password}
                                 name='password'
                                 onChange={handleOnChange}
-                                className='w-full h-full outline-none bg-transparent'/>
+                                className='w-full h-full outline-none bg-transparent'
+                                required
+                                />
 
                                 <div className='cursor-pointer text-xl' onClick={() => setShowPassword((preve) => !preve)}>
                                     <span>
